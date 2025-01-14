@@ -5,8 +5,8 @@ import useGame from './stores/useGame'
 
 function Interface() {
 		const time = useRef();
-		const { phase, restart } = useGame(state => state)
-
+		const { phase, restart, nextLevel, prevLevel } = useGame(state => state)
+	const currentLevel = useGame(state => state.currentLevel)
 		const {forward, leftward, backward, rightward, jump} = useKeyboardControls(
 			state => state)
 
@@ -31,11 +31,17 @@ function Interface() {
 
 		return () => unsubscribeAddEffect()
 	}, [])
-
 	return (
 		<div className='interface'>
 			<div className="time" ref={time}>0:00</div>
-			{phase === 'ended' && <div className="restart" onClick={restart}>Restart</div>}
+			{phase === 'ended' && (
+				<div className="navigation">
+					<div className="nav_item" onClick={prevLevel}>←</div>
+					<div className="nav_item" onClick={restart}>Restart </div>
+					<div className="nav_item" onClick={nextLevel}>→</div>
+				</div>
+			)}
+
 			<div className="controls">
 				<div className="raw">
 					<div className={`key ${forward ? 'active' : ''}`}></div>

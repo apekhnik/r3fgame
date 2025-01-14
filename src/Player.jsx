@@ -88,10 +88,8 @@ export const Player = () => {
 		}
 
 		if(rightward) {
-			//  impulse.x += impulseStrength;
-			 torque.y -= torqueStrength;
-
-			 
+			impulse.x += impulseStrength;
+			 torque.z -= torqueStrength;
 		}
 
 		if(leftward) {
@@ -99,7 +97,7 @@ export const Player = () => {
 			torque.z += torqueStrength;
 		}
 		
-		// body.current.applyImpulse(impulse)
+		body.current.applyImpulse(impulse)
 		body.current.applyTorqueImpulse(torque)
 
 		/**

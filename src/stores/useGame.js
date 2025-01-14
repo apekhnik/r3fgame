@@ -10,6 +10,8 @@ export default create(subscribeWithSelector((set) => {
 		startTime: 0,
 		endTime: 0,
 
+		currentLevel: 1,
+
 		start: () => {
 			set((state) => {
 				if(state.phase === 'ready') return { 
@@ -36,5 +38,23 @@ export default create(subscribeWithSelector((set) => {
 				return {}
 			})
 		},
+
+		nextLevel: () => {
+			set((state) => {
+				if(state.phase === 'ended') return {
+					currentLevel: state.currentLevel + 1,
+				}
+				return {}
+			})
+		},
+		prevLevel: () => {
+			set((state) => {
+				if(state.phase === 'ended' && state.currentLevel >= 2) return {
+					currentLevel: state.currentLevel - 1,
+				}
+
+				return {}
+			})
+		}
 	}
 }))

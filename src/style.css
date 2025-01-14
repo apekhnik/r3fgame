@@ -34,7 +34,7 @@ body,
     text-align: center;
 }
 
-.restart {
+.navigation {
     display: flex;
     justify-content: center;
     position: absolute;
@@ -42,11 +42,15 @@ body,
     left: 0;
     width: 100%;
     color: white;
-    font-size: 80px;
     background:  #00000033;
     padding-top: 10px;
     pointer-events: auto;
     cursor: pointer;
+}
+
+.nav_item {
+    padding: 10px;
+    font-size: 70px;
 }
 
 .controls {
