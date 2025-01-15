@@ -2,6 +2,7 @@ import { OrbitControls } from '@react-three/drei'
 import { Physics } from '@react-three/rapier'
 import Level from './levels/Level.jsx'
 import Lights from './Lights.jsx'
+import {EffectComposer, Bloom} from '@react-three/postprocessing'
 import { Player } from './Player.jsx'
 import useGame from './stores/useGame.js'
 import LevelTwo from "./levels/LevelTwo.jsx";
@@ -13,7 +14,11 @@ export default function Experience()
     const currentLevel = useGame(state => state.currentLevel)
 
     return <>
-
+        <EffectComposer>
+            <Bloom
+                minmapBlur
+            />
+        </EffectComposer>
         <OrbitControls makeDefault />
         <Physics>
             <Lights />

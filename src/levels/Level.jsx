@@ -1,7 +1,7 @@
-import { useGLTF, useTexture } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
-import { CuboidCollider, RigidBody } from '@react-three/rapier'
-import React, { useMemo, useRef, useState } from 'react'
+import {useGLTF, useTexture} from '@react-three/drei'
+import {useFrame} from '@react-three/fiber'
+import {CuboidCollider, RigidBody} from '@react-three/rapier'
+import React, {useMemo, useRef, useState} from 'react'
 import * as THREE from 'three'
 import BlockUpDown from "../components/obstacles/BlockUpDown.jsx";
 import BlockLimbo from "../components/obstacles/BlockLimbo.jsx";
@@ -13,21 +13,21 @@ import {boxGeometry} from "../assets/Geometry.js";
 
 
 
-const BlockStart = ({position = [0 , 0 , 0]}) => {
+const BlockStart = ({position = [0, 0, 0]}) => {
     return <>
         <group position={position}>
-            <mesh 
-                geometry={boxGeometry} 
-                material={floorMaterial}
+            <mesh
+                geometry={boxGeometry}
                 scale={[4, 0.2, 4]}
                 receiveShadow
             >
+                <meshStandardMaterial color={'green'}/>
             </mesh>
         </group>
     </>
 }
 
-const BlockEnd = ({position = [0 , 0 , 0]}) => {
+const BlockEnd = ({position = [0, 0, 0]}) => {
     const humberger = useGLTF('./hamburger.glb')
     // const humberger = useGLTF('./models/axe/axe.glb')
     const bakedTexture = useTexture('./models/axe/axebaked.jpg')
@@ -40,21 +40,21 @@ const BlockEnd = ({position = [0 , 0 , 0]}) => {
 
     return <>
         <group position={position}>
-            <mesh 
-                geometry={boxGeometry} 
-                material={floorMaterial}
+            <mesh
+                geometry={boxGeometry}
                 scale={[4, 0.2, 4]}
                 receiveShadow
             >
+                <meshStandardMaterial color={'blue'}/>
             </mesh>
-            <RigidBody 
-                type='fixed' 
+            <RigidBody
+                type='fixed'
                 colliders='hull'
                 friction={0.2}
                 restitution={0}
                 position={[0, 0.25, 0]}
             >
-                <primitive 
+                <primitive
                     scale={0.2}
                     object={humberger.scene}
                 />
